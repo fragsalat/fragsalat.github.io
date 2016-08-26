@@ -1,0 +1,22 @@
+<section>
+    <h3>Configure application</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        src/app.js
+    </div>
+    <pre><code>
+export class App {
+    configureRouter(config, router) {
+        config.title = 'Aurelia';
+        config.map([{
+                route: ['', 'welcome'],
+                name: 'welcome',
+                moduleId: 'welcome',
+                nav: true
+                title: 'Welcome'
+        }]);
+
+        this.router = router;
+    }
+}
+    </code></pre>
+</section>

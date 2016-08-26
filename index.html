@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Aurelia presentation by Thomas Schlage</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,8 +24,348 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+    <section>
+    <img src="images/aurelia-logo.png" class="plain"/>
+</section>
+</section>
+				<section>
+    <section data-markdown>
+    ## What is Aurelia?
+</section>
+    <section>
+    Aurelia is a JavaScript client framework which utilize modern tools and implements newest
+    ECMAScript standards to create large scaling single page applications.
+</section>
+    <section data-markdown>
+    ## What are the benefits of Aurelia?
+</section>
+    <section data-markdown style="font-size: 2rem">
+    - Framework is written in modern ECMAScript 2016 with Babel as transpiler
+    - Writing code in Typescript, ES6/7 and even ES5 is possible
+    - Modular and extensible architecture
+    - Modern tooling out of the box (gulp, jspm/webpack, babel/typescript, karma, protractor, jasmine)
+    - Webcomponents standard compliant (supports native and 3rd party webcomponents like polymer)
+    - Browser support up to IE9
+    - Isomorphism via abstracted platform layer (nodejs, browser, nwjs, cordova)
+    - Follows convention over configuration paradigm
+    - Suggests MVVM architecture pattern
+    - Dynamic UI composition engine
+    - Feature and plugin engine
+</section>
+    <section data-markdown>
+    ## Why should I use it?
+</section>
+    <section data-markdown>
+    - Performant, lightweight and intuitive
+    - Convention over configuration
+    - Many features, 3rd Party dependencies are unnecessary
+    - Commercial support by creator Durandal Inc.
+    - Active and growing community via Stackoverflow and Gitter channel
+    - Easy to start by using the prepared skeletons
+    - Production ready build setup including testing, test coverage, code linting, building, watching and bundling the application
+</section>
+</section>
+				<section>
+    <section data-markdown>
+    ## How can I start using Aurelia?
+</section>
+    <section data-markdown>
+    There are ready to use skeleton applications, maintained by the Aurelia team, which supports different technologies.
+
+    - [ESNext + Jspm + ASP.Net](https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-esnext-aspnetcore)
+    - [ESNext + Jspm](https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-esnext)
+    - [ESNext + Webpack](https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-esnext-webpack)
+    - [Typescript + Jspm + ASP.Net](https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-typescript-aspnetcore)
+    - [Typescript + Jspm](https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-typescript)
+    - [Typescript + Webpack](https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-typescript-webpack)
+</section>
+    <section data-markdown>
+    ## Lets see an example
+</section>
+    <section>
+    Project structure: <br/>
+    <img src="images/skeleton-architecture.png"/>
+</section>
+    <section>
+    <h3>Bootstrap framework</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        index.html
+    </div>
+    <pre><code>
+&lt;body aurelia-app="main"</>&gt;
+    &lt;script src="jspm_packages/system.js"&gt;&lt;/script&gt;
+    &lt;script src="config.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        System.import('aurelia-bootstrapper');
+    &lt;/script&gt;
+&lt;/body&gt;
+    </code></pre>
+</section>
+    <section>
+    <h3>Configure framework</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        src/main.js
+    </div>
+    <pre><code>
+export function configure(aurelia) {
+    aurelia.use
+           .standardConfiguration()
+           .developmentLogging();
+
+    aurelia.start().then(() => aurelia.setRoot());
+}
+    </code></pre>
+</section>
+    <section>
+    <h3>Configure application</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        src/app.js
+    </div>
+    <pre><code>
+export class App {
+    configureRouter(config, router) {
+        config.title = 'Aurelia';
+        config.map([{
+                route: ['', 'welcome'],
+                name: 'welcome',
+                moduleId: 'welcome',
+                nav: true
+                title: 'Welcome'
+        }]);
+
+        this.router = router;
+    }
+}
+    </code></pre>
+</section>
+    <section>
+    <h3>Define application layout</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        src/app.html
+    </div>
+    <pre><code>
+&lt;template&gt;
+    &lt;require from="nav-bar.html"&gt;&lt;/require&gt;
+    &lt;nav-bar router.bind="router"&gt;&lt;/nav-bar&gt;
+
+    &lt;div class="page-host"&gt;
+        &lt;router-view&gt;&lt;/router-view&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+    </code></pre>
+</section>
+    <section>
+    <h3>Create the first view-model</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        src/welcome.html
+    </div>
+    <pre><code style="font-size: .7em; line-height: 1.2rem; max-height: 500px">
+import {computedFrom} from 'aurelia-framework';
+
+export class Welcome {
+    heading = 'Welcome to the Aurelia Navigation App!';
+    firstName = 'John';
+    lastName = 'Doe';
+    previousValue = this.fullName;
+
+    @computedFrom('firstName', 'lastName')
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+
+    submit() {
+        this.previousValue = this.fullName;
+        alert(`Welcome, ${this.fullName}!`);
+    }
+
+    canDeactivate() {
+        if (this.fullName !== this.previousValue) {
+            return confirm('Are you sure you want to leave?');
+        }
+    }
+}
+    </code></pre>
+</section>
+    <section>
+    <h3>Create the first view template</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        src/welcome.html
+    </div>
+    <pre><code style="font-size: .8em; line-height: 1.4rem; max-height: 500px">
+&lt;template&gt;
+  &lt;section class="au-animate"&gt;
+   &lt;h2&gt;${heading}&lt;/h2&gt;
+   &lt;form role="form" submit.delegate="submit()"&gt;
+    &lt;div class="form-group"&gt;
+     &lt;label for="fn"&gt;First Name&lt;/label&gt;
+     &lt;input type="text" value.bind="firstName" class="form-control"
+               id="fn" placeholder="first name"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+     &lt;label for="ln"&gt;Last Name&lt;/label&gt;
+     &lt;input type="text" value.bind="lastName" class="form-control"
+               id="ln" placeholder="last name"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+     &lt;label&gt;Full Name&lt;/label&gt;
+     &lt;p class="help-block"&gt;${fullName}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;button type="submit" class="btn btn-default"&gt;Submit&lt;/button&gt;
+   &lt;/form&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+    </code></pre>
+</section>
+    <section>
+    <h3>Starting the application</h3>
+    <pre><code style="font-size: .8em; line-height: 1.4rem; max-height: 500px">
+$ gulp watch
+[11:40:11] Using gulpfile /var/www/skeleton-navigation/skeleton-esnext/gulpfile.js
+[11:40:11] Starting 'build'...
+[11:40:11] Starting 'unbundle'...
+[11:40:11] Finished 'unbundle' after 17 ms
+[11:40:11] Starting 'clean'...
+[11:40:11] Finished 'clean' after 62 ms
+[11:40:11] Starting 'build-system'...
+[11:40:11] Starting 'build-html'...
+[11:40:11] Starting 'build-css'...
+[11:40:11] Finished 'build-css' after 18 ms
+[11:40:12] Finished 'build-html' after 1.25 s
+[11:40:12] Finished 'build-system' after 1.26 s
+[11:40:12] Finished 'build' after 1.35 s
+[11:40:12] Starting 'serve'...
+[BS] Access URLs:
+ ----------------------------
+ Local: http://localhost:9000
+ ----------------------------
+    UI: http://localhost:3001
+ ----------------------------
+[BS] Serving files from: .
+[11:40:12] Finished 'serve' after 177 ms
+[11:40:12] Starting 'watch'...
+[11:40:12] Finished 'watch' after 23 ms
+    </code></pre>
+</section>
+    <section>
+    <h3>Running application</h3>
+    <img src="images/skeleton-result.png" class="plain"/>
+</section>
+</section>
+				<section>
+    <section data-markdown>
+    ## Features of Aurelia
+</section>
+    <section>
+    <h3>Dependency Injection</h3>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <div style="margin: 30px 0 -10px; font-size: 24px; text-align: left">
+                        Decorators
+                    </div>
+                    <pre style="width: 100%"><code style="font-size: .7em; line-height: 1.2rem">
+import {inject} from 'aurelia-framework';
+import {HttpClient} from 'aurelia-http-client';
+
+@inject(HttpClient)
+export class App {
+    constructor(http) {
+        this.http = http;
+    }
+}
+                    </code></pre>
+                </td>
+                <td>
+                    <div style="margin: 30px 0 -10px; font-size: 24px; text-align: left">
+                        Static member
+                    </div>
+                    <pre style="width: 100%"><code style="font-size: .7em; line-height: 1.2rem">
+import {HttpClient} from 'aurelia-http-client';
+
+export class App {
+    static inject = [HttpClient];
+
+    constructor(http) {
+        this.http = http;
+    }
+}
+                    </code></pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    <h3>Routing</h3>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <div style="margin: 30px 0 -10px; font-size: 24px; text-align: left">
+                        Configuration
+                    </div>
+                    <pre style="width: 100%"><code style="font-size: .7em; line-height: 1.4rem">
+export class App {
+    configureRouter(config, router) {
+        config.title = 'Aurelia';
+        config.map([{
+            route: ['', 'welcome'],
+            name: 'welcome',
+            moduleId: 'welcome',
+            nav: true,
+            title: 'Welcome'
+        }]);
+
+        this.router = router;
+    }
+}
+                    </code></pre>
+                </td>
+                <td>
+                    <div style="margin: 30px 0 -10px; font-size: 24px; text-align: left">
+                        Usage
+                    </div>
+                    <pre style="width: 100%"><code style="font-size: .7em; line-height: .6rem">
+<a route-href="welcome; params: {id.bind: id}">Title</a>
+                    </code></pre>
+                    <pre style="width: 100%"><code style="font-size: .7em; line-height: 1.4rem">
+import {Router} from 'aurelia-framework';
+
+export class Users {
+	static inject = [Router];
+	constructor(router) {
+		this.router = router;
+	}
+	onClick(id) {
+		this.router.navigateToRoute('welcome', id);
+	}
+}
+                    </code></pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    <h3>Logging</h3>
+
+    <script async src="http://jsfiddle.net/yranjfb7/4/embed/js,html,result/"></script>
+</section>
+    <!-- build:include 4/50.html --><!-- /build -->
+    <!-- build:include 4/60.html --><!-- /build -->
+    <!-- build:include 4/70.html --><!-- /build -->
+    <!-- build:include 4/80.html --><!-- /build -->
+    <!-- build:include 4/90.html --><!-- /build -->
+    <!-- build:include 4/100.html --><!-- /build -->
+    <!-- build:include 4/110.html --><!-- /build -->
+    <!-- build:include 4/120.html --><!-- /build -->
+</section>
+				<!-- build:include 50.html --><!-- /build -->
+				<!-- build:include 60.html --><!-- /build -->
 			</div>
 		</div>
 
@@ -36,6 +376,7 @@
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
+                slideNumber: true,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [

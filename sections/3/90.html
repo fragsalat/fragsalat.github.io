@@ -1,0 +1,32 @@
+<section>
+    <h3>Create the first view-model</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        src/welcome.html
+    </div>
+    <pre><code style="font-size: .7em; line-height: 1.2rem; max-height: 500px">
+import {computedFrom} from 'aurelia-framework';
+
+export class Welcome {
+    heading = 'Welcome to the Aurelia Navigation App!';
+    firstName = 'John';
+    lastName = 'Doe';
+    previousValue = this.fullName;
+
+    @computedFrom('firstName', 'lastName')
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+
+    submit() {
+        this.previousValue = this.fullName;
+        alert(`Welcome, ${this.fullName}!`);
+    }
+
+    canDeactivate() {
+        if (this.fullName !== this.previousValue) {
+            return confirm('Are you sure you want to leave?');
+        }
+    }
+}
+    </code></pre>
+</section>

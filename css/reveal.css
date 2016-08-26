@@ -1323,3 +1323,7 @@ body {
 
 .zoomed .reveal .roll span:after {
   visibility: hidden; }
+
+mark {
+    background-color: #948148;
+}

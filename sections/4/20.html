@@ -1,0 +1,42 @@
+<section>
+    <h3>Dependency Injection</h3>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <div style="margin: 30px 0 -10px; font-size: 24px; text-align: left">
+                        Decorators
+                    </div>
+                    <pre style="width: 100%"><code style="font-size: .7em; line-height: 1.2rem">
+import {inject} from 'aurelia-framework';
+import {HttpClient} from 'aurelia-http-client';
+
+@inject(HttpClient)
+export class App {
+    constructor(http) {
+        this.http = http;
+    }
+}
+                    </code></pre>
+                </td>
+                <td>
+                    <div style="margin: 30px 0 -10px; font-size: 24px; text-align: left">
+                        Static member
+                    </div>
+                    <pre style="width: 100%"><code style="font-size: .7em; line-height: 1.2rem">
+import {HttpClient} from 'aurelia-http-client';
+
+export class App {
+    static inject = [HttpClient];
+
+    constructor(http) {
+        this.http = http;
+    }
+}
+                    </code></pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

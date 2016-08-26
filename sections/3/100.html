@@ -1,0 +1,30 @@
+<section>
+    <h3>Create the first view template</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        src/welcome.html
+    </div>
+    <pre><code style="font-size: .8em; line-height: 1.4rem; max-height: 500px">
+&lt;template&gt;
+  &lt;section class="au-animate"&gt;
+   &lt;h2&gt;${heading}&lt;/h2&gt;
+   &lt;form role="form" submit.delegate="submit()"&gt;
+    &lt;div class="form-group"&gt;
+     &lt;label for="fn"&gt;First Name&lt;/label&gt;
+     &lt;input type="text" value.bind="firstName" class="form-control"
+               id="fn" placeholder="first name"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+     &lt;label for="ln"&gt;Last Name&lt;/label&gt;
+     &lt;input type="text" value.bind="lastName" class="form-control"
+               id="ln" placeholder="last name"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+     &lt;label&gt;Full Name&lt;/label&gt;
+     &lt;p class="help-block"&gt;${fullName}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;button type="submit" class="btn btn-default"&gt;Submit&lt;/button&gt;
+   &lt;/form&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+    </code></pre>
+</section>

@@ -1,0 +1,15 @@
+<section>
+    <h3>Configure framework</h3>
+    <div style="margin: 30px 48px -10px; font-size: 24px; text-align: left">
+        src/main.js
+    </div>
+    <pre><code>
+export function configure(aurelia) {
+    aurelia.use
+           .standardConfiguration()
+           .developmentLogging();
+
+    aurelia.start().then(() => aurelia.setRoot());
+}
+    </code></pre>
+</section>
