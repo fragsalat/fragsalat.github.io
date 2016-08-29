@@ -34,7 +34,7 @@
     ## What is Aurelia?
 </section>
     <section>
-    Aurelia is a JavaScript client framework which utilize modern tools and implements newest
+    Aurelia is a JavaScript client framework which utilizes modern tools and implements newest
     ECMAScript standards to create large scaling single page applications.
 </section>
     <section data-markdown>
@@ -364,8 +364,112 @@ export class Users {
     <!-- build:include 4/110.html --><!-- /build -->
     <!-- build:include 4/120.html --><!-- /build -->
 </section>
-				<!-- build:include 50.html --><!-- /build -->
-				<!-- build:include 60.html --><!-- /build -->
+				<section>
+    <section data-markdown>
+    ## Comparison
+</section>
+    <section>
+    <h3>Aurelia vs React</h3>
+
+    <table style="font-size: 32px;">
+        <tbody>
+            <tr>
+                <td>complete mv* framework <small>(routing, di, view engine, i18n, validation, ...)</small></td>
+                <td>more lightweight because it's only a library to render views</td>
+            </tr>
+            <tr>
+                <td>no or less need for framework specific logic</td>
+                <td>extend a class and optionally wrap or connect it using 3rd party functions <small>(relay, redux, ...)</small></td>
+            </tr>
+            <tr>
+                <td>html as template with native attributes</td>
+                <td>jsx as template with weird attributes</td>
+            </tr>
+            <tr>
+                <td>ready to use gulp build setup with test, cover, watch, serve and bundle</td>
+                <td>have to create own build setup</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    <h3>Aurelia vs Angular 2</h3>
+
+    <table style="font-size: 28px;">
+        <tbody>
+            <tr>
+                <td>version 1.0.2 <small>since Dec 8, 2014</small></td>
+                <td>version rc.5 <small>since Sep 18, 2014</small></td>
+            </tr>
+            <tr>
+                <td>commercial support and via Gitter + Stackoverflow</td>
+                <td>not supported by Google, very big community</td>
+            </tr>
+            <tr>
+                <td>Very good <a href="http://aurelia.io/hub.html">documentation</a></td>
+                <td>Very good <a href="https://angular.io/docs/ts/latest/">documentation</a></td>
+            </tr>
+            <tr>
+                <td>weekly release cycle</td>
+                <td>no regular releases. up to 42 days</td>
+            </tr>
+            <tr>
+                <td>highly extensible due it's written in over 40 separate and exchangeable modules</td>
+                <td>bad extensible and no flexibility because code is delivered in 6 huge packages <small>(common, core, forms, http, plattform-browser, router)</small></td>
+            </tr>
+            <tr>
+                <td>no 3rd party dependencies</td>
+                <td>es6-shim, reflect-metadata, rxjs, zone.js as npm peer dependency and any polyfill library</td>
+            </tr>
+            <tr>
+                <td>330kb - 540kb</td>
+                <td>566kb - 766kb <small><a href="https://gist.github.com/Restuta/cda69e50a853aa64912d#this-gives-us-following-approximations">(reference on github)</a></small></td>
+            </tr>
+            <tr>
+                <td>convention over configuration</td>
+                <td>much configuration via decorators (annotations) required</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <!-- build:include 5/40.html --><!-- /build -->
+    <!-- build:include 5/50.html --><!-- /build -->
+    <!-- build:include 5/60.html --><!-- /build -->
+    <!-- build:include 5/70.html --><!-- /build -->
+    <!-- build:include 5/80.html --><!-- /build -->
+    <!-- build:include 5/90.html --><!-- /build -->
+    <!-- build:include 5/100.html --><!-- /build -->
+    <!-- build:include 5/110.html --><!-- /build -->
+    <!-- build:include 5/120.html --><!-- /build -->
+</section>
+				<section>
+    <section>
+    <h2>Thank you</h2><br/>
+    <h6>Any questions?</h6><br/>
+    <p style="color: #555;">Contact:</p>
+    <style>
+        .contact-list {
+            text-align: left;
+            font-size: 30px !important;
+            color: #555;
+        }
+        .contact-list dt,
+        .contact-list dd {
+            display: inline-block;
+        }
+        .contact-list dt {
+            min-width: 230px;
+        }
+    </style>
+    <div class="contact-list">
+        <dl><dt>Name:</dt><dd>Thomas Schlage</dd></dl>
+        <dl><dt>Team:</dt><dd>Goodbuy (Purchase Order Management)</dd></dl>
+        <dl><dt>Department:</dt><dd>Wholesale @ BNB</dd></dl>
+        <dl><dt>E-Mail:</dt><dd>thomas.schlage@zalando.de</dd></dl>
+        <dl><dt>Hipchat:</dt><dd>#guild-aurelia, @schlage</dd></dl>
+    </div>
+</section>
+</section>
 			</div>
 		</div>
 
